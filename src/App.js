@@ -85,8 +85,8 @@ function ChatRoom() {
   const [formValue, setFormValue] = useState('');
   const [selectedMessage, setSelectedMessage] = useState();
 
-
-  // TODO draw the graph and connect the messages properly.
+  // TODO draw the graph and connect the messages properly. Check this out:
+  // https://observablehq.com/@d3/sticky-force-layout?collection=@d3/d3-force
   let drawme;
   if (messages) {
     drawme = messages.map(msg => 
@@ -126,10 +126,14 @@ function ChatRoom() {
 }
 
 function ChatMessage({content, select}) {
+  console.log(content);
   return (
-    <div onClick={() => select(content.id)}>
-      <p>{content.uid}: {content.text}</p>
+    <div style={ {border: "solid red 2px"} } onClick={() => select(content.id)}>
+      <p>Sender: {content.uid}</p>
+      <p>Message: {content.text}</p>
+      <p>Parent: {content.parent_message}</p>
     </div>
   )
 }
+
 export default App;
